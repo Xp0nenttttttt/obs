@@ -31,6 +31,9 @@ jobs:
             points: .rank.total_points,
             extremes: .rank.extremes
           }' aredl-user.json > obs.json
+      - name: Generate OBS Text
+        run: |
+          jq -r '"AREDL #\(.rank.rank)"' aredl-user.json > rank.txt
       - name: Fetch AREDL Clan
         run: |
           curl -L -o aredl-clan.json https://api.aredl.net/v2/api/aredl/clan/a35a4749-fce4-43e2-8985-d03691c4a07f
@@ -40,7 +43,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add aredl-ranks.json aredl-user.json aredl-clan.json
+          git add aredl-ranks.json aredl-user.json aredl-clan.json obs.json rank.txt
 
           git diff --staged --quiet || git commit -m "Update AREDL data"
 
