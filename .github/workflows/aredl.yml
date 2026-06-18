@@ -27,13 +27,14 @@ jobs:
           jq '{
             rank: .rank.rank,
             country_rank: .rank.country_rank,
-            extremes_rank: .rank.extremes_rank,
             points: .rank.total_points,
             extremes: .rank.extremes
           }' aredl-user.json > obs.json
       - name: Generate OBS Text
         run: |
-          jq -r '"AREDL #\(.rank.rank)"' aredl-user.json > rank.txt
+          jq -r '"rang aredl monde #\(.rank.rank) 
+          rang france #\(.rank.country_rank) 
+          extremes #\(.rank.extremes)"' aredl-user.json > rank.txt
       - name: Fetch AREDL Clan
         run: |
           curl -L -o aredl-clan.json https://api.aredl.net/v2/api/aredl/clan/a35a4749-fce4-43e2-8985-d03691c4a07f
