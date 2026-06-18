@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0;background:transparent;">
+<div id="rank"></div>
+
+<script>
+async function update() {
+  const data = await fetch(
+    "https://TON_PSEUDO.github.io/TON_REPO/obs.json?t=" + Date.now()
+  ).then(r => r.json());
+
+  document.getElementById("rank").innerHTML =
+    `AREDL #${data.rank}`;
+}
+
+update();
+setInterval(update, 60000);
+</script>
+</body>
+</html>
