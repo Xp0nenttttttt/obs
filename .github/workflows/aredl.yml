@@ -22,7 +22,7 @@ jobs:
       - name: Fetch AREDL User
         run: |
           curl -L -o aredl-user.json https://api.aredl.net/v2/api/aredl/profile/1163166644546322533
-          - name: Generate OBS JSON
+      - name: Generate OBS JSON
         run: |
           jq '{
             rank: .rank.rank,
